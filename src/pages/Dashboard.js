@@ -72,6 +72,9 @@ function Dashboard({loggedIn, userInfo}) {
                     <button className="gifButton" type="submit" style={{marginBottom:`20px`}}>Click</button>
                 </form>
             </div>
+            {givenGif && (
+                <h3 className="searchResults"> {results.length} results for "{givenGif}" </h3>
+            )}
             <div>
                 {results.map((gif, i) =>
                     <PostCard gif={gif} key={i}/>

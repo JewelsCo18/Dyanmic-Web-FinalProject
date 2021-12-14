@@ -175,3 +175,10 @@ button {
   margin-top: 80px;
   width: 300px;  
 }
+
+.searchResults {
+  font-size: 18px; 
+  font-style: italic; 
+  font-weight: normal; 
+  margin: 0px; 
+}
