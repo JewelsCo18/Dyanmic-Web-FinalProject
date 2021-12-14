@@ -1,6 +1,7 @@
 import { signInWithEmailAndPassword, getAuth } from 'firebase/auth';
 import React, {useCallback} from 'react'; 
 import LoginForm from '../components/LoginForm';
+import Mascot from "../images/mascot.gif"; 
 
 function Login({setLoggedIn, setUserInfo, setErrors}) {
 
@@ -9,7 +10,6 @@ function Login({setLoggedIn, setUserInfo, setErrors}) {
 
         const email = e.currentTarget.email.value; 
         const password = e.currentTarget.password.value; 
-        const name = e.currentTarget.name.value; 
 
         const auth = getAuth(); 
 
@@ -35,8 +35,9 @@ function Login({setLoggedIn, setUserInfo, setErrors}) {
     }, [setLoggedIn, setUserInfo, setErrors]); 
 
     return (
-        <div className="PageWrapper">
-            <h2>Login</h2>
+        <div className="PageWrapper FormBackground">
+            <img className="Mascot" alt="girl winking at you" src={Mascot}/>
+            <h2 style={{textAlign:"center"}}> Welcome Back to GIF Grinners! </h2>
             <LoginForm className="Form" loginUser={loginUser}/>
         </div> 
     );

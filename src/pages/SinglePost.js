@@ -5,7 +5,9 @@ import PostCard from "../components/PostCard";
 
 function SinglePost(){
     let {id} = useParams(); 
-    const url = `http://localhost:4000`; 
+    console.log(id); 
+    // const url = process.env.BACKEND_URL || `http://localhost:4000`; 
+    const url="http://localhost:4000"; 
     const [gifPost, setGifPost] = useState({}); 
 
     useEffect(() => {
@@ -18,12 +20,11 @@ function SinglePost(){
             .catch(function (error) {
                 console.warn(error)
             }); 
-    }, [id]); 
+    }, [id, url]); 
     
     return (
-        <div className="PageWrapper">
-            <h1> Post</h1>
-            <PostCard gif={gifPost}/>
+        <div className="PageWrapper" style={{height:"70vh", marginTop: "175px"}}>
+            <PostCard style={{height:"90vh"}} gif={gifPost}/>
         </div>
     )
 }

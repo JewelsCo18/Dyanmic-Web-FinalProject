@@ -3,8 +3,10 @@ import React from "react";
 function AddPostForm( {submitPost} ) {
     return (
         <div className="Form">
-            <h2> Add Post Form</h2>
             <form onSubmit={(e) => submitPost(e)}>
+                <label htmlFor="imageTitle">GIF Title </label>
+                <input type="text" name="imageTitle" placeholder="my gif name"/>
+
                 <label htmlFor="imageSrc">Image URL </label>
                 <input type="text" name="imageSrc" placeholder="your gif"/>
 
@@ -14,7 +16,10 @@ function AddPostForm( {submitPost} ) {
                 <label htmlFor="imageCaption">Image Caption </label>
                 <input type="text" name="imageCaption" placeholder="check out my recent gif!"/>
 
-                <button type="submit"> Create Gif Post</button>
+                <label htmlFor="imageTag">Tags (please separate by commas)</label>
+                <input type="text" name="imageTag" placeholder="cat"/>
+
+                <button type="submit"> Create Gif</button>
             </form>
         </div>
     ); 

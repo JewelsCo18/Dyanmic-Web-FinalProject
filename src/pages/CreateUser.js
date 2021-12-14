@@ -1,6 +1,7 @@
 import React, {useCallback} from 'react'; 
 import {getAuth, updateProfile, createUserWithEmailAndPassword} from "firebase/auth"; 
 import CreateUserForm from '../components/CreateUserForm'; 
+import Welcome from "../images/welcome.gif"; 
 
 function CreateUser( {setLoggedIn, setUserInfo, setErrors}) {
 
@@ -36,8 +37,9 @@ function CreateUser( {setLoggedIn, setUserInfo, setErrors}) {
     }, [setLoggedIn, setUserInfo, setErrors]); 
     
     return (
-        <div className="PageWrapper">
-            <h2> SignUp </h2>
+        <div className="PageWrapper FormBackground">
+            <img className="Mascot" alt="panda with a welcome sign" src={Welcome}/>
+            <h2 style={{textAlign:"center"}}> Welcome to GIF Grinners! </h2>
             <CreateUserForm className="Form" signUpUser={signUpUser}/>
         </div> 
     );

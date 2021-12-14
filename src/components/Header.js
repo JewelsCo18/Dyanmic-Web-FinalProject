@@ -2,7 +2,7 @@ import React from 'react';
 
 function Header({logout, loggedIn}) {
     return <header className="Header">
-        <h2> Gif Grinners</h2>
+        <a href="/" className="HeaderTitle"> GIF Grinners</a>
         <div className="Logo"></div>
         <nav >
             {!loggedIn && (
@@ -16,7 +16,7 @@ function Header({logout, loggedIn}) {
                 <>
                 <a href="/createPost">New Post</a>
                 <a href="/profile/id">User Profile</a>
-                <button onClick={() => logout()}> Log Out </button>
+                <a href="/" onClick={() => logout()}> Log Out </a>
                 </>
             )}
         </nav>
