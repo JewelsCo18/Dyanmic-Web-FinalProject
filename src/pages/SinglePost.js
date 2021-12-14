@@ -5,7 +5,6 @@ import PostCard from "../components/PostCard";
 
 function SinglePost(){
     let {id} = useParams(); 
-    console.log(id); 
     // const url = process.env.BACKEND_URL || `http://localhost:4000`; 
     const url="http://localhost:4000"; 
     const [gifPost, setGifPost] = useState({}); 
@@ -14,7 +13,6 @@ function SinglePost(){
         axios 
             .get(`${url}/gif/${id}`)
             .then(function (response) {
-                console.log(response); 
                 setGifPost(response.data); 
             })
             .catch(function (error) {

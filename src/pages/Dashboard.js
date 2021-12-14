@@ -45,7 +45,6 @@ function Dashboard({loggedIn, userInfo}) {
                 let specificGifs = []; 
                 for (var i=0; i<gifs.length; i++){
                     let currTag = gifs[i].imageTag.split(","); 
-                    console.log(currTag); 
                     for (var j=0; j<currTag.length; j++){
                         if (currTag[j] === givenGif || currTag[j] === (" " + givenGif)){
                             specificGifs.push(gifs[i]); 
