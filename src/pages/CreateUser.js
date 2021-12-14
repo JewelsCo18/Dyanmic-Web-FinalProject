@@ -1,5 +1,5 @@
 import React, {useCallback} from 'react'; 
-import {getAuth, createUserWithEmailAndPassword} from "firebase/auth"; 
+import {getAuth, updateProfile, createUserWithEmailAndPassword} from "firebase/auth"; 
 import CreateUserForm from '../components/CreateUserForm'; 
 
 function CreateUser( {setLoggedIn, setUserInfo, setErrors}) {
@@ -9,19 +9,23 @@ function CreateUser( {setLoggedIn, setUserInfo, setErrors}) {
 
         const email = e.currentTarget.email.value; 
         const password = e.currentTarget.password.value; 
+        const displayName = e.currentTarget.displayName.value; 
         const auth = getAuth(); 
 
         createUserWithEmailAndPassword(auth, email, password) 
         .then((userCredential) => {
             const user = userCredential.user; 
-            setLoggedIn(true); 
-            setUserInfo({
-                email: user.email, 
-                displayName: user.displayName, 
-                uid: user.uid, 
-                accessToken: user.accessToken, 
-            }); 
-            setErrors(); 
+            updateProfile(auth.currentUser, {
+                displayName:displayName, 
+            }).then(function() {
+                setLoggedIn(true); 
+                setUserInfo({
+                    email: user.email, 
+                    displayName: user.displayName, 
+                    uid: user.uid, 
+                    accessToken: user.accessToken, 
+                }); 
+            });
         })
         .catch((error) => {
             const errorCode = error.code; 

@@ -9,6 +9,7 @@ function Login({setLoggedIn, setUserInfo, setErrors}) {
 
         const email = e.currentTarget.email.value; 
         const password = e.currentTarget.password.value; 
+        const name = e.currentTarget.name.value; 
 
         const auth = getAuth(); 
 
@@ -19,7 +20,7 @@ function Login({setLoggedIn, setUserInfo, setErrors}) {
             setLoggedIn(true); 
             setUserInfo({
                 email: user.email, 
-                displayName: user.displayName, 
+                displayName: user.name, 
                 uid: user.uid, 
                 accessToken: user.accessToken, 
             }); 

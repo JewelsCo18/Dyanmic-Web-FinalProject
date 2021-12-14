@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import UserProfile from "./pages/UserProfile"; 
 import Dashboard from "./pages/Dashboard"; 
 import AddPost from "./pages/AddPost"; 
+import SinglePost from "./pages/SinglePost"; 
 import Header from "./components/Header"; 
 import {initializeApp} from "firebase/app"; 
 import {getAuth, onAuthStateChanged, signOut} from "firebase/auth"; 
@@ -60,8 +61,9 @@ function App() {
       <Router>
         <Routes>
           <Route path ="/" element={<Dashboard loggedIn={loggedIn} userInfo={userInfo}/>} />
-          <Route path = "/createPost" element={<AddPost/>}/> 
-          <Route path ="/dashboard/:id" element={<Dashboard loggedIn={loggedIn} userInfo={userInfo}/>} /> 
+          <Route path = "/createPost" element={loggedIn ? <AddPost userInfo={userInfo}/> : <Navigate to="/login" />}/> 
+          <Route path = "/gif/:id" element={<SinglePost/>}/> 
+          <Route path ="/dashboard/:id" element={loggedIn ? <Dashboard userInfo={userInfo}/> : <Navigate to="/" />} /> 
           <Route path ="/profile/:id" element={loggedIn ? <UserProfile userInfo={userInfo}/> : <Navigate to="/" />} /> 
           <Route path ="/create" element={!loggedIn ? (<CreateUser setLoggedIn={setLoggedIn} setUserInfo={setUserInfo} setErrors={setErrors}/>) : (<Navigate to={`/dashboard/${userInfo.uid}`} /> ) } />
           <Route path ="/login" element={!loggedIn ? (<Login setLoggedIn={setLoggedIn} setUserInfo={setUserInfo} setErrors={setErrors}/>) : (<Navigate to={`/dashboard/${userInfo.uid}`} /> )} /> 

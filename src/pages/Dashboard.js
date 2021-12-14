@@ -1,47 +1,54 @@
-import React, { useEffect, useState} from 'react'; 
+import React, { useEffect, useMemo, useState} from 'react'; 
 import axios from "axios"; 
-import SinglePost from "../components/SinglePost"; 
+import PostCard from "../components/PostCard"; 
 
 const sample_data = [
     {
-        postId: "1", 
-        userId: "1", 
+        uid: "1", 
+        displayName: "Jules", 
         imageAlt: "Cat entering the screen", 
         imageSrc: "https://i.pinimg.com/originals/17/07/46/17074670b1d2d663fe3521a03f40c37c.gif", 
-        imageAuthor: "ME", 
         imageCaption: "Hello!!", 
     },
 ]; 
 
-const url="https://localhost:4000"; 
-
 function Dashboard({loggedIn, userInfo}) {
 
+    const url="http://localhost:4000/"; 
     const [gifs, setGifs] = useState(); 
 
     useEffect(() => {
+        if (!gifs) {
             axios
                 .get(url)
                 .then(function (response) {
-                    console.log({response}); 
                     setGifs(response.data); 
+                    console.log(response); 
                 })
                 .catch(function (error) {
                     console.warn(error); 
                 })
-    }, []); 
+        } 
+    }, [url, gifs]); 
+
+    const {results} = useMemo(() => {
+        if (!gifs) return {};
+        return {
+            results: gifs, 
+        }
+    }, [gifs])
 
     return (
         <div className="PageWrapper">
             {loggedIn && (
-                <h1>Welcome {userInfo.email}</h1>
+                <h1>Welcome {userInfo.displayName}</h1>
             )}
             {!loggedIn && (
                 <h1>Welcome!</h1>
             )}
             <div>
-                {sample_data.map((gif, i) =>
-                    <SinglePost gif={gif} key={i}/>
+                {results.map((gif, i) =>
+                    <PostCard gif={gif} key={i}/>
                 )}
             
             </div>
