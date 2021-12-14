@@ -23,7 +23,7 @@ function Dashboard({loggedIn, userInfo}) {
     useEffect(() => {
         const gifValue = query.get('gif'); 
         setGivenGif(gifValue); 
-    }, [givenGif])
+    }, [givenGif, query])
 
     useEffect(() => {
         if (!gifs) {
@@ -47,7 +47,7 @@ function Dashboard({loggedIn, userInfo}) {
                     let currTag = gifs[i].imageTag.split(","); 
                     console.log(currTag); 
                     for (var j=0; j<currTag.length; j++){
-                        if (currTag[j] == givenGif || currTag[j] == (" " + givenGif)){
+                        if (currTag[j] === givenGif || currTag[j] === (" " + givenGif)){
                             specificGifs.push(gifs[i]); 
                         }
                     }
@@ -56,7 +56,7 @@ function Dashboard({loggedIn, userInfo}) {
             }  
             return gifs
         }
-    }, [gifs])
+    }, [gifs, givenGif])
 
     return (
         <div className="PageWrapper">

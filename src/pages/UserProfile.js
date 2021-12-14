@@ -25,18 +25,18 @@ function UserProfile({userInfo}) {
         else {
             let specificGifs = []; 
             for (var i=0; i<myGifs.length; i++){
-                if (myGifs[i].userID == userInfo.uid) {
+                if (myGifs[i].userID === userInfo.uid) {
                     specificGifs.push(myGifs[i]); 
                 }
             }
             return specificGifs; 
         }
-    }, [myGifs])
+    }, [myGifs, userInfo])
 
     return (
         <div className="PageWrapper userProfile">
             <div className="userLeft">
-                <img className="Mascot" alt="profile picture" src={Mascot}/>
+                <img className="Mascot" alt="profile" src={Mascot}/>
                 <h1> Hello {userInfo.displayName}!</h1>
                 <p> Email: {userInfo.email} </p>
             </div>
